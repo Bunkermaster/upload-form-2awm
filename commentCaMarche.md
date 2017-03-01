@@ -9,5 +9,14 @@ cd upload-form-2awm
 ```
 
 ## Que faire?
-* Chaque upload doit être loggé dans un fichier de log "log.txt"
-* Rajouter un test sur la taille maximum
+* Rajouter un test sur le type de fichier
+Informations :
+```php
+$_FILES['fichier']['type']
+```
+Je ne veux accepter que les images (GIF, JPG, PNG)
+* image/gif
+* image/jpeg
+* image/png
+
+En cas d'autre type, erreur!

@@ -1,5 +1,6 @@
 <?php
 define('APP_LOG_FILE', __DIR__."/log.txt");
+define('APP_MAX_UPLOAD', 20*1024 ); // 20KO
 function logIt($message, $die = true)
 {
     file_put_contents(APP_LOG_FILE, date('c').' - "'.$_POST['nom'].'" - "'.$message.'"'.PHP_EOL, FILE_APPEND);
@@ -8,12 +9,18 @@ function logIt($message, $die = true)
     }
 }
 // @todo rajouter un test sur la taille maximum
-// @todo Chaque upload doit être loggé dans un fichier de log "log.txt"
 //var_dump($_POST);
-//var_dump($_FILES);
+var_dump($_FILES);die();
+if($_FILES['file1']['size'] > APP_MAX_UPLOAD){
+    logIt("Erreur : Fichier trop gros! " . $_FILES['file1']['size']." Octets contre ".APP_MAX_UPLOAD." permis.");
+}
 // si il y a une erreur specifiee pour le fichier dans $_FILE, j'arrete
 if($_FILES['file1']['error'] != 0){
-    logIt("Erreur : Erreur upload " . $_FILES['file1']['error']);
+    if($_FILES['file1']['error'] == UPLOAD_ERR_INI_SIZE){
+        logIt("Fichier trop gros! Taille supérieure au maximum de la configuration PHP");
+    } else {
+        logIt("Erreur : Erreur upload #" . $_FILES['file1']['error']);
+    }
 }
 //if(!file_put_contents(APP_LOG_FILE, date('c').' - "'.$_POST['nom'].'"'.PHP_EOL, FILE_APPEND)){
 //    die("Impossible d'écrire dans la log");
