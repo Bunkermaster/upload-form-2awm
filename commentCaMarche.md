@@ -9,6 +9,15 @@ cd upload-form-2awm
 ```
 
 ## Que faire?
+* Créer une table `upload` dans une base de données nommée `file-upload-2awm` définissant les fichiers comme suit:
+    * id 
+    * nom VARCHAR(255)
+    * taille INT
+    * content-type VARCHAR(100)
+* stocker les informations relatives au fichier uploadé dans la table en utilisant PDO
+INSERT INTO `upload`...
+
+## Déjà fait
 * Rajouter un test sur le type de fichier
 Informations :
 ```php
