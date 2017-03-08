@@ -1,6 +1,7 @@
 <?php
 // je recupere le code qui est dans config-functions.php
 require_once "config-functions.php";
+require_once "connect.php";
 // @todo rajouter un test sur la taille maximum
 //var_dump($_POST);
 //var_dump($_FILES);die();
@@ -49,5 +50,14 @@ if(!move_uploaded_file($_FILES['file1']['tmp_name'], $uploadDir.$fileName)){
 }
 // j'affiche l'image uploadee
 logIt("Ca a marché! '$fileName' est bien uploadé", false);
+$sql = "INSERT INTO `upload`
+        (`nom`,`taille`,`content-type`)
+        VALUES
+        (:nom, :taille, :contenttype);";
+$stmt = $pdo->prepare($sql);
+$stmt->bindValue(':nom',$_FILES['file1']['name']);
+$stmt->bindValue(':taille',$_FILES['file1']['size']);
+$stmt->bindValue(':contenttype',$_FILES['file1']['type']);
+$stmt->execute();
 ?>
 <img src="<?="/uploads/".$fileName?>" alt="">

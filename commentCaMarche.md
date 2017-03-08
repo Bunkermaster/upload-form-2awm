@@ -15,7 +15,29 @@ cd upload-form-2awm
     * taille INT
     * content-type VARCHAR(100)
 * stocker les informations relatives au fichier uploadé dans la table en utilisant PDO
-INSERT INTO `upload`...
+```mysql
+INSERT INTO `upload`
+(`nom`,`taille`,`content-type`)
+VALUES
+('image.png', 9001, 'image/png');
+```
+Puis...
+```php
+<?php
+try{
+    $pdo = new PDO('mysql:host=localhost;dbname=file-upload-2awm', 'root', 'root');
+} catch (PDOException $exception) {
+    // message 
+}
+$sql = "INSERT INTO `upload`
+        (`nom`,`taille`,`content-type`)
+        VALUES
+        (:nom, :taille, :contenttype);";
+// RTFM PDO
+// prepare
+// bind
+// execute
+```
 
 ## Déjà fait
 * Rajouter un test sur le type de fichier
