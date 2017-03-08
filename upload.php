@@ -2,9 +2,6 @@
 // je recupere le code qui est dans config-functions.php
 require_once "config-functions.php";
 require_once "connect.php";
-// @todo rajouter un test sur la taille maximum
-//var_dump($_POST);
-//var_dump($_FILES);die();
 // si il y a une erreur specifiee pour le fichier dans $_FILE, j'arrete
 if($_FILES['file1']['error'] != 0){
     if($_FILES['file1']['error'] == UPLOAD_ERR_INI_SIZE){
