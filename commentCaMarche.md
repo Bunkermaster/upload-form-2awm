@@ -20,3 +20,5 @@ Je ne veux accepter que les images (GIF, JPG, PNG)
 * image/png
 
 En cas d'autre type, erreur!
+
+Hint : http://php.net/manual/fr/function.in-array.php

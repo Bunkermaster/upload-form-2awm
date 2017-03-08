@@ -10,7 +10,8 @@ function logIt($message, $die = true)
 }
 // @todo rajouter un test sur la taille maximum
 //var_dump($_POST);
-var_dump($_FILES);die();
+//var_dump($_FILES);die();
+
 if($_FILES['file1']['size'] > APP_MAX_UPLOAD){
     logIt("Erreur : Fichier trop gros! " . $_FILES['file1']['size']." Octets contre ".APP_MAX_UPLOAD." permis.");
 }
